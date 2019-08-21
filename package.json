@@ -36,5 +36,8 @@
     "react": "*",
     "react-native": ">=0.50.0",
     "react-native-svg": ">=7.0.0"
+  },
+  "devDependencies": {
+    "react-native-svg": ">=7.0.0"
   }
 }
