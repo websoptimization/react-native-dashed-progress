@@ -1,6 +1,6 @@
 {
   "name": "react-native-dashed-progress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Native component for creating animated, circular dashed progress with react-native-svg",
   "main": "index.js",
   "scripts": {
