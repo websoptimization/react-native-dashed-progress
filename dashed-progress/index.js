@@ -470,6 +470,7 @@ DashedProgress.defaultProps = {
   duration: 1000,
   strokeLinecap: "round",
   showIndicator: true,
+  showTooltip: true,
   divideEnabled: false,
   showTooltip: false
 };

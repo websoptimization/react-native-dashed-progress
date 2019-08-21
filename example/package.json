@@ -10,7 +10,8 @@
   "dependencies": {
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-dashed-progress": "git+https://github.com/websoptimization/react-native-dashed-progress.git"
+    "react-native-dashed-progress": "git+https://github.com/websoptimization/react-native-dashed-progress.git",
+    "react-native-svg": "^9.6.4"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
