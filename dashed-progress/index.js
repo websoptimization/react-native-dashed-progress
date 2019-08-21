@@ -1,10 +1,10 @@
 // COMOPONENT OR LIBRARY IMPORT
-import React, {PureComponent} from 'react';
-import {Svg, Text, Path, Line} from 'react-native-svg';
-import {View, Dimensions} from 'react-native';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import { Svg, Text, Path, Line } from "react-native-svg";
+import { View, Dimensions } from "react-native";
+import PropTypes from "prop-types";
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get("window");
 
 const responsiveHeight = h => {
   return height * (h / 100);
@@ -23,18 +23,18 @@ export class DashedProgress extends PureComponent {
     //set animated state value
     this.state = {
       last_stroke_index: 0,
-      last_trail_index: 0,
+      last_trail_index: 0
     };
 
     //calculate first position of stopIndicator
-    const {radius, barWidth, strokeThickness, indicatorWidth} = props;
+    const { radius, barWidth, strokeThickness, indicatorWidth } = props;
     const center =
       radius + Math.max(barWidth, indicatorWidth) + strokeThickness;
     stopIndicator = {
       fromX: center,
       fromY: center - (radius - barWidth),
       toX: center,
-      toY: center - (radius + indicatorWidth),
+      toY: center - (radius + indicatorWidth)
     };
   }
 
@@ -51,7 +51,7 @@ export class DashedProgress extends PureComponent {
         }
       }
     } catch (error) {
-      console.log('catch error at in getDerivedStateFromProps  >>>>> ', error);
+      console.log("catch error at in getDerivedStateFromProps  >>>>> ", error);
     }
   }
 
@@ -63,7 +63,7 @@ export class DashedProgress extends PureComponent {
         }
       });
     } catch (error) {
-      console.log('catch error at componentDidMount  >>>>> ', error);
+      console.log("catch error at componentDidMount  >>>>> ", error);
     }
   }
 
@@ -77,7 +77,7 @@ export class DashedProgress extends PureComponent {
       indicatorWidth,
       countBars,
       divideEnabled,
-      trailColor,
+      trailColor
     } = this.props;
 
     return new Promise((resolve, reject) => {
@@ -150,7 +150,7 @@ export class DashedProgress extends PureComponent {
                 textX: textX,
                 textY: textY,
                 text: text,
-                stroke: trailColor,
+                stroke: trailColor
               });
               addDividedNumber = false;
             }
@@ -171,7 +171,7 @@ export class DashedProgress extends PureComponent {
             fromX: fromX_stopIndicator,
             fromY: fromY_stopIndicator,
             toX: toX_stopIndicator,
-            toY: toY_stopIndicator,
+            toY: toY_stopIndicator
           };
 
           //prepare array for displaying dashed circle
@@ -181,7 +181,7 @@ export class DashedProgress extends PureComponent {
             toX: toX,
             toY: toY,
             stroke: trailColor,
-            stopIndicator: stop_indicator,
+            stopIndicator: stop_indicator
           });
 
           count = count + 1;
@@ -189,14 +189,14 @@ export class DashedProgress extends PureComponent {
 
         bigCircle = dashed;
         this.setState({
-          reaload: true,
+          reaload: true
         });
         if (bigCircle.length <= 0) {
           resolve(false);
         }
         resolve(true);
       } catch (error) {
-        console.log('catch error at getPathDirections >>>>> ', error);
+        console.log("catch error at getPathDirections >>>>> ", error);
       }
     });
   }
@@ -204,7 +204,7 @@ export class DashedProgress extends PureComponent {
   //increase animated dash on weight_plate circle
   increaseWeight() {
     try {
-      const {strokeColor, fill, duration} = this.props;
+      const { strokeColor, fill, duration } = this.props;
 
       //divide time interval for each dash
       var interval_time = 3;
@@ -241,7 +241,7 @@ export class DashedProgress extends PureComponent {
 
             this.setState({
               last_stroke_index: k - 1,
-              last_trail_index: k,
+              last_trail_index: k
             });
             i = k;
           } else {
@@ -252,14 +252,14 @@ export class DashedProgress extends PureComponent {
         }
       }, interval_time);
     } catch (error) {
-      console.log('catch error at increaseWeight >>>>> ', error);
+      console.log("catch error at increaseWeight >>>>> ", error);
     }
   }
 
   //decrease animated dash on weight_plate circle
   decreaseWeight() {
     try {
-      const {trailColor, countBars, fill, duration} = this.props;
+      const { trailColor, countBars, fill, duration } = this.props;
 
       //divide time interval for each dash
       var interval_time = 3;
@@ -302,7 +302,7 @@ export class DashedProgress extends PureComponent {
 
             this.setState({
               last_trail_index: k + 1,
-              last_stroke_index: k,
+              last_stroke_index: k
             });
 
             i = k;
@@ -314,7 +314,7 @@ export class DashedProgress extends PureComponent {
         }
       }, interval_time);
     } catch (error) {
-      console.log('catch error at decreaseWeight >>>>> ', error);
+      console.log("catch error at decreaseWeight >>>>> ", error);
     }
   }
 
@@ -327,16 +327,16 @@ export class DashedProgress extends PureComponent {
       strokeThickness,
       strokeLinecap,
       showTooltip,
-      fontSize,
-      fontColor,
-      fontFamily,
+      tooltipSize,
+      tooltipColor,
+      tooltipFamily,
       divideEnabled,
-      value,
+      text,
       dividerNumberSize,
       showIndicator,
       strokeColor,
       indicatorWidth,
-      indicatorColor,
+      indicatorColor
     } = this.props;
 
     //calculate size of svg view
@@ -345,12 +345,12 @@ export class DashedProgress extends PureComponent {
     const size = center * 2;
 
     //adjust fontSize of middle text
-    var textFontSize = fontSize || 12;
-    if (fontSize != undefined) {
-      if (fontSize >= center) {
+    var textFontSize = tooltipSize || 12;
+    if (tooltipSize != undefined) {
+      if (tooltipSize >= center) {
         textFontSize = center;
       } else {
-        textFontSize = fontSize;
+        textFontSize = tooltipSize;
       }
     }
 
@@ -359,7 +359,8 @@ export class DashedProgress extends PureComponent {
         <Svg
           width={`${size}`}
           height={`${size}`}
-          style={{backgroundColor: 'transparent'}}>
+          style={{ backgroundColor: "transparent" }}
+        >
           {/*display animated circle view*/}
           {bigCircle.map((item, index) => (
             <Line
@@ -383,7 +384,8 @@ export class DashedProgress extends PureComponent {
                 y={item.textY + (dividerNumberSize || 9) / 3}
                 fill={item.stroke}
                 fontSize={dividerNumberSize || 9}
-                textAnchor="middle">
+                textAnchor="middle"
+              >
                 {item.text}
               </Text>
             ))}
@@ -408,9 +410,10 @@ export class DashedProgress extends PureComponent {
               y={center + textFontSize / 3}
               textAnchor="middle"
               fontSize={textFontSize}
-              fontFamily={fontFamily}
-              fill={fontColor}>
-              {value || fill + '%'}
+              fontFamily={tooltipFamily}
+              fill={tooltipColor}
+            >
+              {text || fill + "%"}
             </Text>
           )}
         </Svg>
@@ -421,10 +424,10 @@ export class DashedProgress extends PureComponent {
 
 function isPositiveNumber(response) {
   if (response.fill < 0) {
-    console.error(new Error('fill must be greater than or equal to 0'));
+    console.error(new Error("fill must be greater than or equal to 0"));
   } else if (response.fill > response.countBars) {
     console.error(
-      new Error(`fill must be less than or equal to ${response.countBars}`),
+      new Error(`fill must be less than or equal to ${response.countBars}`)
     );
   }
 }
@@ -439,9 +442,9 @@ DashedProgress.propTypes = {
   strokeLinecap: PropTypes.string,
   trailColor: PropTypes.string,
   strokeColor: PropTypes.string,
-  fontColor: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  fontSize: PropTypes.number,
+  tooltipColor: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  tooltipSize: PropTypes.number,
   showTooltip: PropTypes.bool,
   dividerNumber: PropTypes.number,
   dividerNumberSize: PropTypes.number,
@@ -450,7 +453,7 @@ DashedProgress.propTypes = {
   divideEnabled: PropTypes.bool,
   duration: PropTypes.number,
   containerStyle: PropTypes.object,
-  fontFamily: PropTypes.string,
+  tooltipFamily: PropTypes.string
 };
 
 DashedProgress.defaultProps = {
@@ -460,10 +463,13 @@ DashedProgress.defaultProps = {
   indicatorWidth: 20,
   strokeThickness: 1,
   fill: 50,
-  trailColor: 'black',
-  strokeColor: 'red',
-  indicatorColor: 'red',
-  duration: 2000,
+  trailColor: "#000000",
+  strokeColor: "#008000",
+  indicatorColor: "#008000",
+  tooltipColor: "#008000",
+  duration: 1000,
+  strokeLinecap: "round",
   showIndicator: true,
-  showTooltip: true,
+  divideEnabled: false,
+  showTooltip: false
 };
