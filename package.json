@@ -31,9 +31,7 @@
     "url": "https://github.com/websoptimization/react-native-dashed-progress/issues"
   },
   "homepage": "https://github.com/websoptimization/react-native-dashed-progress#readme",
-  "dependencies": {
-    "react-native-svg": ">=7.0.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "*",
     "react-native": ">=0.50.0",
