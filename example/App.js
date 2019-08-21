@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 import {DashedProgress} from 'react-native-dashed-progress';
 
@@ -10,14 +10,14 @@ export default class App extends Component {
         <DashedProgress
           fill={20}
           countBars={50}
-          radius={30}
-          divideEnabled={true}
+          radius={50}
           strokeThickness={2}
         />
         <DashedProgress
-          fill={20}
-          countBars={50}
-          radius={30}
+          fill={this.state.fill}
+          countBars={100}
+          radius={50}
+          divideEnabled={true}
           strokeColor="#00e0ff"
         />
       </View>

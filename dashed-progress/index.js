@@ -11,31 +11,30 @@ const responsiveHeight = h => {
 };
 
 var number = [];
-var bigCircle = [];
-var increment_timer = () => {};
-var decrement_timer = () => {};
 var stopIndicator = {};
 
 export class DashedProgress extends PureComponent {
   constructor(props) {
     super(props);
-
-    //set animated state value
-    this.state = {
-      last_stroke_index: 0,
-      last_trail_index: 0
-    };
-
     //calculate first position of stopIndicator
     const { radius, barWidth, strokeThickness, indicatorWidth } = props;
     const center =
       radius + Math.max(barWidth, indicatorWidth) + strokeThickness;
-    stopIndicator = {
-      fromX: center,
-      fromY: center - (radius - barWidth),
-      toX: center,
-      toY: center - (radius + indicatorWidth)
+    //set animated state value
+    this.state = {
+      last_stroke_index: 0,
+      last_trail_index: 0,
+      bigCircle: [],
+      stopIndicator: {
+        fromX: center,
+        fromY: center - (radius - barWidth),
+        toX: center,
+        toY: center - (radius + indicatorWidth)
+      }
     };
+
+    this.increment_timer = () => {};
+    this.decrement_timer = () => {};
   }
 
   componentDidUpdate(prevProps) {
@@ -79,12 +78,7 @@ export class DashedProgress extends PureComponent {
       divideEnabled,
       trailColor
     } = this.props;
-    console.log(
-      "radius >>>>>>>>> ",
-      radius,
-      " and divideEnabled >>>>>>> ",
-      divideEnabled
-    );
+
     return new Promise((resolve, reject) => {
       try {
         var count = 0;
@@ -192,13 +186,18 @@ export class DashedProgress extends PureComponent {
           count = count + 1;
         }
 
-        bigCircle = dashed;
-        this.setState({
-          reaload: true
-        });
-        if (bigCircle.length <= 0) {
-          resolve(false);
-        }
+        this.setState(
+          {
+            reaload: true,
+            bigCircle: dashed
+          },
+          () => {
+            if (this.state.bigCircle.length <= 0) {
+              resolve(false);
+            }
+          }
+        );
+
         resolve(true);
       } catch (error) {
         console.log("catch error at getPathDirections >>>>> ", error);
@@ -210,7 +209,6 @@ export class DashedProgress extends PureComponent {
   increaseWeight() {
     try {
       const { strokeColor, fill, duration } = this.props;
-
       //divide time interval for each dash
       var interval_time = 3;
 
@@ -224,13 +222,15 @@ export class DashedProgress extends PureComponent {
         diff = parseInt(100 / interval_time);
       }
       //clear all remaining intervals
-      clearInterval(increment_timer);
-      clearInterval(decrement_timer);
+      clearInterval(this.increment_timer);
+      clearInterval(this.decrement_timer);
 
       //intilize new increment interval
-      increment_timer = setInterval(() => {
+      this.increment_timer = setInterval(() => {
         try {
           if (i <= fill) {
+            var bigCircle = this.state.bigCircle;
+            var stopIndicator = this.state.stopIndicator;
             for (k = i; k <= i + diff; k++) {
               if (bigCircle.length > k) {
                 if (bigCircle[k].stroke != strokeColor && k <= fill) {
@@ -246,11 +246,13 @@ export class DashedProgress extends PureComponent {
 
             this.setState({
               last_stroke_index: k - 1,
-              last_trail_index: k
+              last_trail_index: k,
+              bigCircle: bigCircle,
+              stopIndicator: stopIndicator
             });
             i = k;
           } else {
-            clearInterval(increment_timer);
+            clearInterval(this.increment_timer);
           }
         } catch (err) {
           console.log(err);
@@ -285,13 +287,15 @@ export class DashedProgress extends PureComponent {
       }
 
       //clear all remaining intervals
-      clearInterval(decrement_timer);
-      clearInterval(increment_timer);
+      clearInterval(this.decrement_timer);
+      clearInterval(this.increment_timer);
 
       //intilize new decrement interval
-      decrement_timer = setInterval(() => {
+      this.decrement_timer = setInterval(() => {
         try {
           if (i >= last_length && i > 0) {
+            var bigCircle = this.state.bigCircle;
+            var stopIndicator = this.state.stopIndicator;
             for (k = i; k > i - diff; k--) {
               if (
                 bigCircle[k].stroke != trailColor &&
@@ -307,12 +311,14 @@ export class DashedProgress extends PureComponent {
 
             this.setState({
               last_trail_index: k + 1,
-              last_stroke_index: k
+              last_stroke_index: k,
+              bigCircle: bigCircle,
+              stopIndicator: stopIndicator
             });
 
             i = k;
           } else {
-            clearInterval(decrement_timer);
+            clearInterval(this.decrement_timer);
           }
         } catch (err) {
           console.log(err);
@@ -367,7 +373,7 @@ export class DashedProgress extends PureComponent {
           style={{ backgroundColor: "transparent" }}
         >
           {/*display animated circle view*/}
-          {bigCircle.map((item, index) => (
+          {this.state.bigCircle.map((item, index) => (
             <Line
               key={`line_${index}`}
               x1={item.fromX}
@@ -398,10 +404,10 @@ export class DashedProgress extends PureComponent {
           {/* display stop indicator at fill */}
           {showIndicator && (
             <Line
-              x1={stopIndicator.fromX}
-              y1={stopIndicator.fromY}
-              x2={stopIndicator.toX}
-              y2={stopIndicator.toY}
+              x1={this.state.stopIndicator.fromX}
+              y1={this.state.stopIndicator.fromY}
+              x2={this.state.stopIndicator.toX}
+              y2={this.state.stopIndicator.toY}
               stroke={indicatorColor}
               strokeWidth={strokeThickness}
               strokeLinecap={strokeLinecap}
