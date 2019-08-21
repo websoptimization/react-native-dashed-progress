@@ -10,15 +10,14 @@ export default class App extends Component {
         <DashedProgress
           fill={20}
           countBars={50}
-          radius={50}
+          radius={30}
           strokeThickness={2}
         />
         <DashedProgress
-          fill={this.state.fill}
+          fill={50}
           countBars={100}
-          radius={50}
+          radius={70}
           divideEnabled={true}
-          strokeColor="#00e0ff"
         />
       </View>
     );

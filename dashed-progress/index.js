@@ -10,9 +10,6 @@ const responsiveHeight = h => {
   return height * (h / 100);
 };
 
-var number = [];
-var stopIndicator = {};
-
 export class DashedProgress extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,6 +22,7 @@ export class DashedProgress extends PureComponent {
       last_stroke_index: 0,
       last_trail_index: 0,
       bigCircle: [],
+      number: [],
       stopIndicator: {
         fromX: center,
         fromY: center - (radius - barWidth),
@@ -189,7 +187,8 @@ export class DashedProgress extends PureComponent {
         this.setState(
           {
             reaload: true,
-            bigCircle: dashed
+            bigCircle: dashed,
+            number: number
           },
           () => {
             if (this.state.bigCircle.length <= 0) {
@@ -388,7 +387,7 @@ export class DashedProgress extends PureComponent {
 
           {/*drawing divided lines and number */}
           {divideEnabled &&
-            number.map((item, index) => (
+            this.state.number.map((item, index) => (
               <Text
                 key={`number_${index}`}
                 x={item.textX}
