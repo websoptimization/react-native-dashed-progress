@@ -1,0 +1,40 @@
+{
+  "name": "react-native-dashed-progress",
+  "version": "1.0.0",
+  "description": "React Native component for creating animated, circular dashed progress with react-native-svg",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/websoptimization/react-native-dashed-progress.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "dash",
+    "progress",
+    "chart",
+    "react-svg",
+    "react-progress",
+    "react-progressbar",
+    "progressbar",
+    "round-progress",
+    "circle-progressbar",
+    "circle-progress"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/websoptimization/react-native-dashed-progress/issues"
+  },
+  "homepage": "https://github.com/websoptimization/react-native-dashed-progress#readme",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.50.0",
+    "react-native-svg": ">=7.0.0"
+  }
+}
