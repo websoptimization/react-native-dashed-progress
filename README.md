@@ -43,7 +43,7 @@ import {DashedProgress} from 'react-native-dashed-progress';
 | countBars        | Number                      | 100       | Total number of dashes in circle
 | strokeThickness  | Number                      | 1         | Thickness of dash
 | fill             | Number (>=0 and <=countBars)| 50        | Total number of filled Dashes in circle
-| text             | String                      | 50%       | Text which will be display in center of circle
+| text             | String                      | 50%       | A Text will display in the circle
 | strokeLinecap    | String                      | round     | Shape used at ends of dash. Possible values: butt,round, square                                                           
 | trailColor       | String                      | #000000   | Color of unfilled dashes
 | strokeColor      | String                      | #008000   | Color of filled dashes
@@ -54,7 +54,7 @@ import {DashedProgress} from 'react-native-dashed-progress';
 | divideEnabled    | Boolean                     | false     | Enabled to divide countBars into given dividerNumber
 | dividerNumber    | Number                      | 10        | Number which will divide by countBars
 | dividerNumberSize| Number                      | 9         | fontSize of dividerNumber
-| showIndicator    | Boolean                     | true      | Enabled to display stopIndicator in animated Circle
+| showIndicator    | Boolean                     | true      | Enabled to display stop indicator in animated Circle
 | indicatorColor   | String                      | #008000   | Color of indicator
 | duration         | Number                      | 1000      | Total time to animate dashes
 | containerStyle   | Object                      |           | Extra styling for the main container
