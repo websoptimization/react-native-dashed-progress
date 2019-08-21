@@ -12,9 +12,9 @@ React Native component to draw circular dashed progress bar.
 
 ## Installation
 
-1. Install `react-native-dashed-progress`component:
+1. Install `react-native-dashed-progress`component and react-native-svg:
 
-    `npm install --save react-native-dashed-progress`
+    `npm i --save react-native-dashed-progress react-native-svg`
     
     skip step 2 if you are using react-native >= 0.60
 
