@@ -9,15 +9,28 @@ export default class App extends Component {
       <View style={styles.body}>
         <DashedProgress
           fill={20}
-          countBars={50}
-          radius={30}
           strokeThickness={2}
+          countBars={50}
+          radius={40}
+          showIndicator={false}
+          strokeColor="red"
+          tooltipColor="black"
         />
         <DashedProgress
-          fill={50}
+          fill={40}
+          countBars={50}
+          radius={50}
+          strokeThickness={2}
+          trailColor="orange"
+        />
+        <DashedProgress
+          fill={60}
+          strokeThickness={2}
           countBars={100}
           radius={70}
           divideEnabled={true}
+          indicatorColor="blue"
+          tooltipColor="blue"
         />
       </View>
     );
