@@ -10,7 +10,14 @@ export default class App extends Component {
         <DashedProgress
           fill={20}
           countBars={50}
-          radius={50}
+          radius={30}
+          divideEnabled={true}
+          strokeThickness={2}
+        />
+        <DashedProgress
+          fill={20}
+          countBars={50}
+          radius={30}
           strokeColor="#00e0ff"
         />
       </View>
@@ -22,7 +29,7 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: 'white',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
 });

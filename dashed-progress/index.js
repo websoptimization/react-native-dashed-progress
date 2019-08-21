@@ -79,7 +79,12 @@ export class DashedProgress extends PureComponent {
       divideEnabled,
       trailColor
     } = this.props;
-
+    console.log(
+      "radius >>>>>>>>> ",
+      radius,
+      " and divideEnabled >>>>>>> ",
+      divideEnabled
+    );
     return new Promise((resolve, reject) => {
       try {
         var count = 0;
