@@ -69,6 +69,9 @@ npm install
 react-native-run-android OR react-native-run-ios
 ```
 
+## Credits
+react-native-dashed-progress is developed and executed under the surveillance of our Brilliant minds of [Webs Optimization Software Solution](https://www.websoptimization.com/)
+
 ## License
 
 MIT
